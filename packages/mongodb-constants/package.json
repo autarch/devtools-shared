@@ -13,10 +13,10 @@
     "email": "compass@mongodb.com"
   },
   "homepage": "https://github.com/mongodb-js/devtools-shared",
-  "version": "0.33.0",
+  "version": "0.34.3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mongodb-js/devtools-shared.git"
+    "url": "git+https://github.com/mongodb-js/devtools-shared.git"
   },
   "files": [
     "dist"
@@ -55,16 +55,16 @@
     "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0"
   },
   "devDependencies": {
-    "@mongodb-js/eslint-config-devtools": "^0.11.7",
-    "@mongodb-js/mocha-config-devtools": "^1.1.2",
-    "@mongodb-js/prettier-config-devtools": "^1.0.3",
-    "@mongodb-js/tsconfig-devtools": "^1.1.2",
+    "@mongodb-js/eslint-config-devtools": "^0.11.8",
+    "@mongodb-js/mocha-config-devtools": "^1.1.3",
+    "@mongodb-js/prettier-config-devtools": "^1.0.4",
+    "@mongodb-js/tsconfig-devtools": "^1.1.3",
     "@types/chai": "^4.2.21",
     "@types/mocha": "^9.1.1",
     "@types/semver": "^7.7.1",
     "@types/sinon-chai": "^4.0.0",
-    "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0",
     "acorn": "^8.16.0",
+    "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0",
     "chai": "^4.5.0",
     "depcheck": "^1.4.7",
     "eslint": "^7.25.0 || ^8.0.0",

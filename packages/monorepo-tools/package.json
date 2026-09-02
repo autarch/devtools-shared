@@ -10,10 +10,10 @@
     "email": "compass@mongodb.com"
   },
   "homepage": "https://github.com/mongodb-js/devtools-shared",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mongodb-js/devtools-shared.git"
+    "url": "git+https://github.com/mongodb-js/devtools-shared.git"
   },
   "license": "SSPL",
   "files": [
@@ -23,12 +23,12 @@
   ],
   "main": "dist/index.js",
   "bin": {
-    "precommit": "./bin/precommit.js",
-    "depalign": "./bin/depalign.js",
-    "monorepo-where": "./bin/where.js",
-    "bump-monorepo-packages": "./bin/bump-packages.js",
-    "request-npm-token": "./bin/request-npm-token.js",
-    "check-transitive-deps": "./bin/check-transitive-deps.js"
+    "precommit": "bin/precommit.js",
+    "depalign": "bin/depalign.js",
+    "monorepo-where": "bin/where.js",
+    "bump-monorepo-packages": "bin/bump-packages.js",
+    "request-npm-token": "bin/request-npm-token.js",
+    "check-transitive-deps": "bin/check-transitive-deps.js"
   },
   "scripts": {
     "bootstrap": "npm run compile",
@@ -49,10 +49,10 @@
     "reformat": "npm run prettier -- --write ."
   },
   "devDependencies": {
-    "@mongodb-js/eslint-config-devtools": "^0.11.7",
-    "@mongodb-js/mocha-config-devtools": "^1.1.2",
-    "@mongodb-js/prettier-config-devtools": "^1.0.3",
-    "@mongodb-js/tsconfig-devtools": "^1.1.2",
+    "@mongodb-js/eslint-config-devtools": "^0.11.8",
+    "@mongodb-js/mocha-config-devtools": "^1.1.3",
+    "@mongodb-js/prettier-config-devtools": "^1.0.4",
+    "@mongodb-js/tsconfig-devtools": "^1.1.3",
     "@types/mocha": "^9.1.1",
     "@types/node": "^25.5.2",
     "@types/pacote": "^11.1.8",

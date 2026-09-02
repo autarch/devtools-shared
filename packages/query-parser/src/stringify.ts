@@ -48,10 +48,11 @@ function getTypeDescriptorForValue(value: BSONValue) {
 
 const BSON_TO_JS_STRING = {
   Code: function (v: Code) {
+    const code = JSON.stringify(v.code);
     if (v.scope) {
-      return `Code('${v.code}',${JSON.stringify(v.scope)})`;
+      return `Code(${code},${JSON.stringify(v.scope)})`;
     }
-    return `Code('${v.code}')`;
+    return `Code(${code})`;
   },
   ObjectID: function (v: ObjectId) {
     return `ObjectId('${v.toString('hex')}')`;
@@ -79,11 +80,21 @@ const BSON_TO_JS_STRING = {
     return `BinData(${subType.toString(10)}, '${v.toString('base64')}')`;
   },
   DBRef: function (v: DBRef) {
-    if (v.db) {
-      return `DBRef('${v.collection}', '${v.oid.toString()}', '${v.db}')`;
+    // `toJSString` only returns undefined for values that stringify to
+    // nothing, which for an oid can only be `undefined` itself.
+    const oid = toJSString(v.oid, 0) ?? 'undefined';
+    const args = [JSON.stringify(v.collection), oid];
+    // `fields` defaults to an empty object rather than being unset, so only
+    // include it when it actually holds something.
+    const hasFields = !!v.fields && Object.keys(v.fields).length > 0;
+    if (v.db || hasFields) {
+      // `db` has to be present for `fields` to land in the right position.
+      args.push(v.db === undefined ? 'undefined' : JSON.stringify(v.db));
     }
-
-    return `DBRef('${v.collection}', '${v.oid.toString()}')`;
+    if (hasFields) {
+      args.push(toJSString(v.fields, 0) ?? '{}');
+    }
+    return `DBRef(${args.join(', ')})`;
   },
   Timestamp: function (v: Timestamp) {
     return `Timestamp({ t: ${v.high}, i: ${v.low} })`;
@@ -166,16 +177,4 @@ export function toJSString(
     },
     ind,
   );
-}
-
-/**
- * @public
- * @deprecated
- * This function is deprecated and not recommended as it replaces
- * double spaces, newline values, and indents with only one space.
- **/
-export function stringify(obj: unknown): string | undefined {
-  return toJSString(obj, 1)
-    ?.replace(/ ?\n ? ?/g, '')
-    .replace(/ {2,}/g, ' ');
 }
